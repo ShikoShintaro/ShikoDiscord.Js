@@ -9,7 +9,7 @@ module.exports = {
   run: async (client, message, args) => {
 
 
-      
+
 
     if (!args[0]) {
       let categories = [];
@@ -64,7 +64,12 @@ module.exports = {
         .setFooter({ text: `Requested by ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
         .setTimestamp()
 
-      return message.reply({ embeds: [embed1] })
+      await message.reply({ embeds: [embed1] })
+
+      setTimeout(() => {
+        message.delete(5000)
+      }, 5000);
+
     } else {
       const command =
         client.commands.get(args[0].toLowerCase()) ||
@@ -79,7 +84,7 @@ module.exports = {
         return message.reply({ embeds: [embed2] })
       }
 
-      const embed3 = new MessageEmbed()
+      const embed3 = new EmbedBuilder()
         .setAuthor({ name: "Command Details:", iconURL: "https://i.imgur.com/uxcvoiI.gif" })
         .addField("PREFIX:", `\`${prefix}\``)
         .addField(
@@ -110,8 +115,8 @@ module.exports = {
         })
         .setTimestamp()
         .setColor(roleColor);
-      return message.reply({ embeds: [embed3] })
-    }
+      await message.reply({ embeds: [embed3] })
 
+    }
   },
 };
