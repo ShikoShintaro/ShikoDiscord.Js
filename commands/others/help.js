@@ -9,7 +9,7 @@ module.exports = {
   run: async (client, message, args) => {
 
 
-         
+      
 
     if (!args[0]) {
       let categories = [];
@@ -39,18 +39,32 @@ module.exports = {
         categories.push(data);
       });
 
+      //DEPRECATED LINE
+
+      // const embed = new MessageEmbed()
+      //   .setAuthor("Haro you need help?? Here are all of my commands:", 'https://i.imgur.com/uxcvoiI.gif')
+      //   .addFields(categories)
+      //   .setDescription(
+      //     `Use \`${prefix}help\` followed by a command name to get more additional information on a command. For example: \`${prefix}help ban\`.`
+      //   )
+      //   .setFooter(
+      //     `Requested by ${message.author.tag}`,
+      //     message.author.displayAvatarURL({ dynamic: true })
+      //   )
+      //   .setTimestamp()
+      //   .setColor(roleColor);
+
+
       const embed1 = new EmbedBuilder()
-        // .setAuthor("Haro you need help?? Here are all of my commands:", 'https://i.imgur.com/uxcvoiI.gif')
+        .setAuthor({ name: "Haro you need help?? These are my commands", iconURL: "https://i.imgur.com/uxcvoiI.gif" })
         .addFields(categories)
         .setDescription(
           `Use \`${prefix}help\` followed by a command name to get more additional information on a command. For example: \`${prefix}help ban\`.`
         )
-        // .setFooter(
-        //   `Requested by ${message.author.tag}`,
-        //   message.author.displayAvatarURL({ dynamic: true })
-        // )
-        
-      return message.reply({ embeds: [embed1] });
+        .setFooter({ text: `Requested by ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
+        .setTimestamp()
+
+      return message.reply({ embeds: [embed1] })
     } else {
       const command =
         client.commands.get(args[0].toLowerCase()) ||
@@ -59,14 +73,14 @@ module.exports = {
         );
 
       if (!command) {
-        const embed = new EmbedBuilder()
+        const embed2 = new EmbedBuilder()
           .setTitle(`Invalid command! Use \`${prefix}help\` for all of my commands!`)
           .setColor("FF0000");
-        return message.channel.send(embed);
+        return message.reply({ embeds: [embed2] })
       }
 
-      const embed2 = new EmbedBuilder()
-        .setAuthor("Command Details:", 'https://i.imgur.com/uxcvoiI.gif')
+      const embed3 = new MessageEmbed()
+        .setAuthor({ name: "Command Details:", iconURL: "https://i.imgur.com/uxcvoiI.gif" })
         .addField("PREFIX:", `\`${prefix}\``)
         .addField(
           "COMMAND:",
@@ -90,13 +104,14 @@ module.exports = {
             ? command.description
             : "No description for this command."
         )
-        // .setFooter(
-        //   `Requested by ${message.author.tag}`,
-        //   message.author.displayAvatarURL({ dynamic: true })
-        // )
-        
-      return message.reply({ embeds: [embed2] });
+        .setFooter({
+          text: `Requested by ${message.author.tag}`,
+          iconURL: message.author.displayAvatarURL({ dynamic: true })
+        })
+        .setTimestamp()
+        .setColor(roleColor);
+      return message.reply({ embeds: [embed3] })
     }
-    
+
   },
 };
