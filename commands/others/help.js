@@ -86,35 +86,68 @@ module.exports = {
 
       const embed3 = new EmbedBuilder()
         .setAuthor({ name: "Command Details:", iconURL: "https://i.imgur.com/uxcvoiI.gif" })
-        .addField("PREFIX:", `\`${prefix}\``)
-        .addField(
-          "COMMAND:",
-          command.name ? `\`${command.name}\`` : "No name for this command."
+        .addFields({ name: "PREFIX:", value: `\`${prefix}\`` })
+        .addFields(
+          {
+            name: "COMMAND",
+            value: command.name
+              ? `\`${command.name}\``
+              : "No name for this command"
+          }
         )
-        .addField(
-          "ALIASES:",
-          command.aliases
-            ? `\`${command.aliases.join("` `")}\``
-            : "No aliases for this command."
+        .addFields(
+          {
+            name: "ALIASES",
+            value: command.aliases
+              ? `\`${command.aliases.join("` `")}\``
+              : "No Aliases for this command"
+          }
         )
-        .addField(
-          "USAGE:",
-          command.usage
-            ? `\`${prefix}${command.name} ${command.usage}\``
-            : `\`${prefix}${command.name}\``
+        .addFields(
+          {
+            name: "USAGE",
+            value: command.usage
+              ? `\`${prefix}${command.name} ${command.usage}\``
+              : `\`${prefix}${command.name}\``
+
+          }
         )
-        .addField(
-          "DESCRIPTION:",
-          command.description
-            ? command.description
-            : "No description for this command."
+        .addFields(
+          {
+            name: "DESCRIPTION",
+            value: command.description
+              ? command.description
+              : "No description for this command"
+          }
         )
+        // .addField(
+        //   "COMMAND:",
+        //   command.name ? `\`${command.name}\`` : "No name for this command."
+        // )
+        // .addField(
+        //   "ALIASES:",
+        //   command.aliases
+        //     ? `\`${command.aliases.join("` `")}\``
+        //     : "No aliases for this command."
+        // )
+        // .addField(
+        //   "USAGE:",
+        //   command.usage
+        //     ? `\`${prefix}${command.name} ${command.usage}\``
+        //     : `\`${prefix}${command.name}\``
+        // )
+        // .addField(
+        //   "DESCRIPTION:",
+        //   command.description
+        //     ? command.description
+        //     : "No description for this command."
+        // )
         .setFooter({
           text: `Requested by ${message.author.tag}`,
           iconURL: message.author.displayAvatarURL({ dynamic: true })
         })
         .setTimestamp()
-        .setColor(roleColor);
+        
       await message.reply({ embeds: [embed3] })
 
     }
