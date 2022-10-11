@@ -35,25 +35,9 @@ module.exports = {
           name: dir.toUpperCase(),
           value: cmds.length === 0 ? "`In progress`." : cmds.join(" "),
         };
-
+        
         categories.push(data);
       });
-
-      //DEPRECATED LINE
-
-      // const embed = new MessageEmbed()
-      //   .setAuthor("Haro you need help?? Here are all of my commands:", 'https://i.imgur.com/uxcvoiI.gif')
-      //   .addFields(categories)
-      //   .setDescription(
-      //     `Use \`${prefix}help\` followed by a command name to get more additional information on a command. For example: \`${prefix}help ban\`.`
-      //   )
-      //   .setFooter(
-      //     `Requested by ${message.author.tag}`,
-      //     message.author.displayAvatarURL({ dynamic: true })
-      //   )
-      //   .setTimestamp()
-      //   .setColor(roleColor);
-
 
       const embed1 = new EmbedBuilder()
         .setAuthor({ name: "Haro you need help?? These are my commands", iconURL: "https://i.imgur.com/uxcvoiI.gif" })
@@ -63,7 +47,7 @@ module.exports = {
         )
         .setFooter({ text: `Requested by ${message.author.tag}`, iconURL: message.author.displayAvatarURL({ dynamic: true }) })
         .setTimestamp()
-
+        .setColor("Random")
       await message.reply({ embeds: [embed1] })
 
       setTimeout(() => {
@@ -81,7 +65,10 @@ module.exports = {
         const embed2 = new EmbedBuilder()
           .setTitle(`Invalid command! Use \`${prefix}help\` for all of my commands!`)
           .setColor("FF0000");
-        return message.reply({ embeds: [embed2] })
+        await message.reply({ embeds: [embed2] })
+        setTimeout(() => {
+          message.delete(5000)
+        }, 5000);
       }
 
       const embed3 = new EmbedBuilder()
@@ -120,36 +107,16 @@ module.exports = {
               : "No description for this command"
           }
         )
-        // .addField(
-        //   "COMMAND:",
-        //   command.name ? `\`${command.name}\`` : "No name for this command."
-        // )
-        // .addField(
-        //   "ALIASES:",
-        //   command.aliases
-        //     ? `\`${command.aliases.join("` `")}\``
-        //     : "No aliases for this command."
-        // )
-        // .addField(
-        //   "USAGE:",
-        //   command.usage
-        //     ? `\`${prefix}${command.name} ${command.usage}\``
-        //     : `\`${prefix}${command.name}\``
-        // )
-        // .addField(
-        //   "DESCRIPTION:",
-        //   command.description
-        //     ? command.description
-        //     : "No description for this command."
-        // )
         .setFooter({
           text: `Requested by ${message.author.tag}`,
           iconURL: message.author.displayAvatarURL({ dynamic: true })
         })
         .setTimestamp()
-        
+        .setColor("Random")
       await message.reply({ embeds: [embed3] })
-
+      setTimeout(() => {
+        message.delete(5000)
+      }, 5000);
     }
   },
 };

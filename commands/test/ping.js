@@ -8,7 +8,7 @@ module.exports = {
 
             .setTitle("Pong~")
             .setDescription(`${client.ws.ping} ms`)
-            .setColor("#007fff")
+            .setColor("Random")
             .setTimestamp()
         await
             message.reply({ embeds: [embed] });
