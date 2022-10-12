@@ -1,6 +1,7 @@
 const { Client, Message, DiscordAPIError, EmbedBuilder, Embed } = require('discord.js');
 let cd = new Set()
 const config = require('../../config/shiko.json')
+const MessageEmbed = EmbedBuilder
 
 function createRandomNumber(min, max) {
     min = Math.ceil(min);
@@ -155,117 +156,101 @@ module.exports = {
 
     run: async (client, message, args) => {
 
-        const Pending = new EmbedBuilder()
-            .setTitle('OI')
-            .setDescription("❎ **| Hey, you still have an equation to solve! Please solve that one first before creating another equation!**")
-            .setColor(config.colors.no)
-            .setTimestamp()
-            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
-        if (cd.has(message.author.id))
-            return message.reply({ embeds: [Pending] });
-
+        if (cd.has(message.author.id)) return message.channel.send({
+            embeds: [new MessageEmbed()
+                .setTitle('OI')
+                .setDescription("❎ **| Hey, you still have an equation to solve! Please solve that one first before creating another equation!**")
+                .setColor(config.colors.no)
+                .setTimestamp()
+                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
+        });
         const level = args[0] ? parseInt(args[0]) : 1;
-
-        const invalidLvl = new EmbedBuilder()
-            .setTitle('OI')
-            .setDescription("❎ **| I'm sorry, that's an invalid level!**")
-            .setColor(config.colors.no)
-            .setTimestamp()
-            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
-
-        if (isNaN(level))
-            return message.reply({ embeds: [invalidLvl] })
-
-        const levelrange = new EmbedBuilder()
-            .setTitle("OI")
-            .setDescription("❎ **| I'm sorry, level range is from 1-20!**")
-            .setColor(config.colors.no)
-            .setTimestamp()
-            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
-
-        if (level <= 0 || level > 20)
-            return message.reply({ embeds: [levelrange] })
-
-        const operatoramnt = new EmbedBuilder()
-            .setTitle('Aweee~')
-            .setDescription("❎ **| I'm sorry, that's an invalid operator amount!**")
-            .setColor(config.colors.no)
-            .setTimestamp()
-            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
+        if (isNaN(level)) return message.channel.send({
+            embeds: [new MessageEmbed()
+                .setTitle('OI')
+                .setDescription("❎ **| I'm sorry, that's an invalid level!**")
+                .setColor(config.colors.no)
+                .setTimestamp()
+                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
+        });
+        if (level <= 0 || level > 20) return message.channel.send({
+            embeds: [new MessageEmbed()
+                .setTitle("OI")
+                .setDescription("❎ **| I'm sorry, level range is from 1-20!**")
+                .setColor(config.colors.no)
+                .setTimestamp()
+                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
+        });
 
         const operator_amount = args[1] ? parseInt(args[1]) : 4;
-        if (isNaN(operator_amount))
-            return message.reply({ embeds: [operatoramnt] })
+        if (isNaN(operator_amount)) return message.channel.send({
+            embeds: [new MessageEmbed()
+                .setTitle('Aweee~')
+                .setDescription("❎ **| I'm sorry, that's an invalid operator amount!**")
+                .setColor(config.colors.no)
+                .setTimestamp()
+                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
+        });
+        if (operator_amount < 1 || operator_amount > 10) return message.channel.send({
+            embeds: [new EmbedBuilder()
+                .setTitle('Aweee~')
+                .setDescription("❎ **| I'm sorry, operator amount range is from 1-10!**")
+                .setColor(config.colors.no)
+                .setTimestamp()
+                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
 
-        const operatoramnt2 = new EmbedBuilder()
-            .setTitle('Aweee~')
-            .setDescription("❎ **| I'm sorry, operator amount range is from 1-10!**")
-            .setColor(config.colors.no)
-            .setTimestamp()
-            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
-
-        if (operator_amount < 1 || operator_amount > 10)
-            return message.reply({ embeds: [operatoramnt2] })
+        });
 
         const val = await generateEquation(level, operator_amount);
         const equation = val[0];
-
-        const equationerr = new EmbedBuilder()
-            .setTitle('A-')
-            .setDescription("❎ **| I'm sorry, the equation generator had problems generating your equation, please try again!**")
-            .setColor(config.colors.no)
-            .setTimestamp()
-            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
-
-        if (!equation)
-            return message.reply({ embeds: [equationerr] })
-
-
+        if (!equation) return message.channel.send({
+            embeds: [new MessageEmbed()
+                .setTitle('A-')
+                .setDescription("❎ **| I'm sorry, the equation generator had problems generating your equation, please try again!**")
+                .setColor(config.colors.no)
+                .setTimestamp()
+                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
+        });
         const answer = val[1];
-        const Answerthequestion = new EmbedBuilder()
-            .setTitle('Answer The Question')
-            .setDescription(`❗**| ${message.author}, here is your equation:\n\`Operator count ${operator_amount}, level ${level}\`\n\`\`\`fix\n${equation} = ...\`\`\`You have 30 seconds to solve it.**`)
-            .setColor(config.colors.answer)
-            .setTimestamp()
-            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
-        return message.reply(
-            { embeds: [Answerthequestion] }
-        ).then(msg => {
+        message.channel.send({
+            embeds: [new MessageEmbed()
+                .setTitle('Answer The Question')
+                .setDescription(`❗**| ${message.author}, here is your equation:\n\`Operator count ${operator_amount}, level ${level}\`\n\`\`\`fix\n${equation} = ...\`\`\`You have 30 seconds to solve it.**`)
+                .setColor(config.colors.answer)
+                .setTimestamp()
+                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
+        }).then(msg => {
+            cd.add(message.author.id);
             let collector = message.channel.createMessageCollector(m => parseInt(m.content) === answer && m.author.id === message.author.id, { time: 30000, max: 1 });
             let correct = false;
-            collector.on('collect', () => {
-
-                const yey = new EmbedBuilder()
-                    .setTitle('Yey you got the answer~')
-                    .setDescription(`✅ **| ${message.author}, your answer is correct! It took you ${timeDiff / 1000}s!\n\`\`\`fix\n${equation} = ${answer}\`\`\`**`)
-                    .setColor(config.colors.correct)
-                    .setTimestamp()
-                    .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
-
-                msg.delete().catch(console.error);
+            collector.once('collect', () => {
+                msg.delete()
                 correct = true;
                 let timeDiff = Date.now() - msg.createdTimestamp;
-                message.reply(
-                    { embeds: [yey] }
-                );
-                cd.delete(message.author.id);
+                return message.channel.send({
+                    embeds: [new MessageEmbed()
+                        .setTitle('Yey you got the answer~')
+                        .setDescription(`✅ **| ${message.author}, your answer is correct! It took you ${timeDiff / 1000}s!\n\`\`\`fix\n${equation} = ${answer}\`\`\`**`)
+                        .setColor(config.colors.correct)
+                        .setTimestamp()
+                        .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
+                });
             });
-            collector.on('end', () => {
-                const time = new EmbedBuilder()
-                    .setTitle('Aweee Time Out~')
-                    .setDescription(`❎ **| ${message.author}, timed out. The correct answer is:\n\`\`\`fix\n${equation} = ${answer}\`\`\`**`)
-                    .setColor(config.colors.no)
-                    .setTimestamp()
-                    .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
-
+            collector.once('end', () => {
                 if (!correct) {
-                    msg.delete().catch(console.error);
-                    message.reply(
-                        { embeds: [time] }
-                    );
-                    cd.delete(message.author.id);
+                    // msg.delete().catch(console.error);
+                    return message.channel.send({
+                        embeds: [new MessageEmbed()
+                            .setTitle('Aweee Time Out~')
+                            .setDescription(`❎ **| ${message.author}, timed out. The correct answer is:\n\`\`\`fix\n${equation} = ${answer}\`\`\`**`)
+                            .setColor(config.colors.no)
+                            .setTimestamp()
+                            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
+                    });
+
+
                 }
             });
         });
