@@ -1,7 +1,7 @@
 const { Client, Message, DiscordAPIError, EmbedBuilder, Embed } = require('discord.js');
 let cd = new Set()
 const config = require('../../config/shiko.json')
-const MessageEmbed = EmbedBuilder
+const ME = EmbedBuilder
 
 function createRandomNumber(min, max) {
     min = Math.ceil(min);
@@ -155,104 +155,133 @@ module.exports = {
     aliases: ["mq"],
 
     run: async (client, message, args) => {
+        // .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
 
 
-        if (cd.has(message.author.id)) return message.channel.send({
-            embeds: [new MessageEmbed()
-                .setTitle('OI')
-                .setDescription("❎ **| Hey, you still have an equation to solve! Please solve that one first before creating another equation!**")
-                .setColor(config.colors.no)
-                .setTimestamp()
-                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
-        });
+
+
+        const error1 = new ME()
+            .setTitle('OI')
+            .setDescription("❎ **| Hey, you still have an equation to solve! Please solve that one first before creating another equation!**")
+            .setColor(config.colors.no)
+            .setTimestamp()
+            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
+
+
+        if (cd.has(message.author.id))
+            return message.reply({ embeds: [error1] });
+
         const level = args[0] ? parseInt(args[0]) : 1;
-        if (isNaN(level)) return message.channel.send({
-            embeds: [new MessageEmbed()
-                .setTitle('OI')
-                .setDescription("❎ **| I'm sorry, that's an invalid level!**")
-                .setColor(config.colors.no)
-                .setTimestamp()
-                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
-        });
-        if (level <= 0 || level > 20) return message.channel.send({
-            embeds: [new MessageEmbed()
-                .setTitle("OI")
-                .setDescription("❎ **| I'm sorry, level range is from 1-20!**")
-                .setColor(config.colors.no)
-                .setTimestamp()
-                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
-        });
+        const error2 = new ME()
+            .setTitle('OI')
+            .setDescription("❎ **| I'm sorry, that's an invalid level!**")
+            .setColor(config.colors.no)
+            .setTimestamp()
+            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
+
+        const error3 = new ME()
+            .setTitle("OI")
+            .setDescription("❎ **| I'm sorry, level range is from 1-20!**")
+            .setColor(config.colors.no)
+            .setTimestamp()
+            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
+
+
+        if (isNaN(level))
+            return message.reply({ embeds: [error2] })
+        if (level <= 0 || level > 20)
+            return message.reply({ embeds: [error3] })
 
         const operator_amount = args[1] ? parseInt(args[1]) : 4;
-        if (isNaN(operator_amount)) return message.channel.send({
-            embeds: [new MessageEmbed()
-                .setTitle('Aweee~')
-                .setDescription("❎ **| I'm sorry, that's an invalid operator amount!**")
-                .setColor(config.colors.no)
-                .setTimestamp()
-                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
-        });
-        if (operator_amount < 1 || operator_amount > 10) return message.channel.send({
-            embeds: [new EmbedBuilder()
-                .setTitle('Aweee~')
-                .setDescription("❎ **| I'm sorry, operator amount range is from 1-10!**")
-                .setColor(config.colors.no)
-                .setTimestamp()
-                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
+        const error4 = new ME()
+            .setTitle('Aweee~')
+            .setDescription("❎ **| I'm sorry, that's an invalid operator amount!**")
+            .setColor(config.colors.no)
+            .setTimestamp()
+            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() });
 
-        });
+        const error5 = new ME()
+            .setTitle('Aweee~')
+            .setDescription("❎ **| I'm sorry, operator amount range is from 1-10!**")
+            .setColor(config.colors.no)
+            .setTimestamp()
+            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() });
+
+        if (isNaN(operator_amount))
+            return message.reply({ embeds: [error4] });
+        if (operator_amount
+            < 1 || operator_amount > 10
+        )
+            return message.reply({ embeds: [error5] });
 
         const val = await generateEquation(level, operator_amount);
         const equation = val[0];
-        if (!equation) return message.channel.send({
-            embeds: [new MessageEmbed()
-                .setTitle('A-')
-                .setDescription("❎ **| I'm sorry, the equation generator had problems generating your equation, please try again!**")
-                .setColor(config.colors.no)
-                .setTimestamp()
-                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
-        });
+
+        const error6 = new ME()
+            .setTitle('A-')
+            .setDescription("❎ **| I'm sorry, the equation generator had problems generating your equation, please try again!**")
+            .setColor(config.colors.no)
+            .setTimestamp()
+            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() });
+
+        if (!equation)
+            return message.reply({ embeds: [error6] })
+
         const answer = val[1];
 
-        message.channel.send({
-            embeds: [new MessageEmbed()
-                .setTitle('Answer The Question')
-                .setDescription(`❗**| ${message.author}, here is your equation:\n\`Operator count ${operator_amount}, level ${level}\`\n\`\`\`fix\n${equation} = ...\`\`\`You have 30 seconds to solve it.**`)
-                .setColor(config.colors.answer)
-                .setTimestamp()
-                .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
-        }).then(msg => {
+        const error9 = new ME()
+            .setTitle('Answer The Question')
+            .setDescription(`❗**| ${message.author}, here is your equation:\n\`Operator count ${operator_amount}, level ${level}\`\n\`\`\`fix\n${equation} = ...\`\`\`You have 30 seconds to solve it.**`)
+            .setColor(config.colors.answer)
+            .setTimestamp()
+            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() });
+
+        message.reply({
+            embeds: [error9]
+        }
+        ).then(msg => {
             cd.add(message.author.id);
-            let collector = message.channel.createMessageCollector(m => parseInt(m.content) === answer && m.author.id === message.author.id, { time: 30000, max: 1 });
+            let collector = message.channel.createMessageCollector(
+                {
+                    filter: (m) =>
+                        parseInt(m.content) === answer && m.author.id === message.author.id,
+                    time: 30000,
+                    max: 1,
+                }
+            );
             let correct = false;
-            collector.once('collect', () => {
-                msg.delete()
+            collector.on('collect', () => {
+                
+                cd.add(message.author.id);
                 correct = true;
-                let timeDiff = Date.now() - msg.createdTimestamp;
-                return message.channel.send({
-                    embeds: [new MessageEmbed()
-                        .setTitle('Yey you got the answer~')
-                        .setDescription(`✅ **| ${message.author}, your answer is correct! It took you ${timeDiff / 1000}s!\n\`\`\`fix\n${equation} = ${answer}\`\`\`**`)
-                        .setColor(config.colors.correct)
-                        .setTimestamp()
-                        .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
-                });
+                const timeDiff = Date.now() - msg.createdTimestamp;
+                const ans1 = new ME()
+                    .setTitle('Yey you got the answer~')
+                    .setDescription(`✅ **| ${message.author}, your answer is correct! It took you ${timeDiff / 1000}s!\n\`\`\`fix\n${equation} = ${answer}\`\`\`**`)
+                    .setColor(config.colors.correct)
+                    .setTimestamp()
+                    .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() });
+
+                message.reply({
+                    embeds: [ans1]
+                })
+                cd.delete(message.author.id);
             });
             collector.once('end', () => {
+                
+                const ans2 = new ME()
+                    .setTitle('Aweee Time Out~')
+                    .setDescription(`❎ **| ${message.author}, timed out. The correct answer is:\n\`\`\`fix\n${equation} = ${answer}\`\`\`**`)
+                    .setColor(config.colors.no)
+                    .setTimestamp()
+                    .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() });
+
                 if (!correct) {
-                    // msg.delete().catch(console.error);
-                    return message.channel.send({
-                        embeds: [new MessageEmbed()
-                            .setTitle('Aweee Time Out~')
-                            .setDescription(`❎ **| ${message.author}, timed out. The correct answer is:\n\`\`\`fix\n${equation} = ${answer}\`\`\`**`)
-                            .setColor(config.colors.no)
-                            .setTimestamp()
-                            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })]
-                    });
-
-
+                    msg.delete();
+                    message.reply({ embeds: [ans2] })
+                    cd.delete(message.author.id);
                 }
-            });
-        });
+            })
+        })
     }
 }
