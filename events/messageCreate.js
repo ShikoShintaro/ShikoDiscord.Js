@@ -23,37 +23,14 @@ client.on("messageCreate", async message => {
     }
 })
 
-// const client = require("../shiko-main");
-// const config = require('../config/shiko.json')
-
-// client.on("messageCreate", async (message) => {
-//     try {
-        
-//         if (message.author.bot) return;
-
-//         let prefix = config.prefix;
-
-//         if (!message.content.startsWith(prefix)) return;
-
-//         const args = message.content.slice(prefix.length).trim().split(/ +/g);
-//         const command = args.shift().toLowerCase();
-
-//         const cmd = client.commands.find(
-//             (c) =>
-//                 c.data.name === command ||
-//                 (c.data.alias && c.data.alias.includes(command))
-//         );
-
-//         if (!cmd)
-//             return await message.reply({
-//                 content: `Command \`${command}\` does not exist`,
-//             });
-
-//         await message.channel.sendTyping();
-//         await cmd.run(client, message, args);
-//     } catch (err) {
-//         console.log(err);
-//         await message.reply({ content: err.message });
-//     }
-// },
-// )
+client.on("messageCreate", (message) => {
+    if(message.content.startsWith("uwu")) {
+        client.subevents.get("olok").run(client, message)
+    }
+    else if (message.content.startsWith("cute")) {
+        client.subevents.get("kitty").run(client, message)
+    } 
+    else if (message.content.startsWith("Hi") && message.content.endsWith("Shiko")) {
+        client.subevents.get("res").run(client, message)
+    }
+})
