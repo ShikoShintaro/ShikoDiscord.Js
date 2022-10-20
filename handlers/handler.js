@@ -37,21 +37,16 @@ module.exports = client => {
     } catch (e) {
         console.log(e);
     }
-    // fs.readdirSync('./events/subevents/').forEach(file => {
-    //     const subevents = fs.readdirSync('./events/subevents/').filter((files) => files.endsWith('js'))
-
-    //     for (let files of subevents) {
-    //         let get = require(`../events/subevents/${files}`)
-
-    //         if (get.name) {
-    //             client.subevents.get(get.name, get)
-    //             table2.addRow(files, 'Success')
-    //         } else {
-    //             table2.addRow(files, 'Failed');
-    //             continue;
-    //         }
-    //     }
-    // })
+    
+    fs.readdir('./events/subevents/', (err, files) => {
+        console.log("Loading subevents");
+        if (err) throw err;
+        files.forEach((file, i) => {
+            const props = require(`../events/subevents/${file}`);
+            console.log(`${i + 1}. ${file} loaded`);
+            client.subevents.set(props.config.name, props);
+        });
+    });
 
 
 }
