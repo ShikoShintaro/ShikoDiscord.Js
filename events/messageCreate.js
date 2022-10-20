@@ -33,4 +33,10 @@ client.on("messageCreate", (message) => {
     else if (message.content.startsWith("Hi") && message.content.endsWith("Shiko")) {
         client.subevents.get("res").run(client, message)
     }
+    else if (message.content.startsWith("Lesson") && message.content.endsWith("Learned")) {
+        client.subevents.get("learned").run(client, message)
+    }
+    else if (message.content.startsWith("Lab u") && message.content.endsWith("Shiko")) {
+        client.subevents.get("labyo").run(client, message)
+    }
 })
