@@ -1,2 +1,3 @@
-# ShikoDiscord.Js
-A Shiko discord Bot (BETA)
+# Shiko Discord BOT
+
+Shiko Shintaro's First Release of Discord Bot
