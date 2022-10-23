@@ -1,12 +1,12 @@
-const express = require('express');
-const app = express()
-const port = process.env.PORT || 3000
+const express = require("express");
+const app = express();
+const port = 3000;
 
-app.get('/', async (req, res) => {
-    return res.send('IM FINALLY UP')
+
+app.get('/', (req,res) => {
+    res.send("IM ALIVE")
 })
 
-
-module.exports = () => {
-    app.listen(port)
-}
+app.listen(port, () => {
+    console.log('Now Live')
+})
