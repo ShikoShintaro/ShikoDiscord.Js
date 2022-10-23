@@ -7,7 +7,5 @@ app.get('/', async (req, res) => {
 
 
 module.exports = () => {
-    app.listen(2004, () => {
-        
-    })
+    app.listen(process.env.PORT || 8080)
 }
