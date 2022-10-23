@@ -51,14 +51,13 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+client.login(token, () => {
+    app.get('/', (req, res) => {
+        res.send("IM ALIVE")
 
-app.get('/', (req,res) => {
-    res.send("IM ALIVE")
-    
+    })
+
+    app.listen(port, () => {
+
+    })
 })
-
-app.listen(port, () => {
-    
-})
-
-client.login(token)
