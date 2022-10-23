@@ -50,8 +50,9 @@ const app = express()
 
 // client.login(token)
 
-app.get('/', async (req, res) => {
-    return res.send('Follow documentation ')
+app.get('/', async (req, res, next) => {
+    res.send('Follow documentation ')
+    next();
 })
 
 
