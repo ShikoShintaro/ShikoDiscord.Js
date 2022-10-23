@@ -58,6 +58,6 @@ client.login(token, () => {
     })
 
     app.listen(port, () => {
-
+        app.login(token)
     })
 })
