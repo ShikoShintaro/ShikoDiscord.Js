@@ -2,10 +2,12 @@ const app = require("express")()
 
 
 app.get('/', async (req, res) => {
-    return res.send('Follow documentation ')
+    return res.send('IM FINALLY UP')
 })
 
 
-app.listen(8999, () => {
-
-})
+module.exports = () => {
+    app.listen(2004, () => {
+        
+    })
+}

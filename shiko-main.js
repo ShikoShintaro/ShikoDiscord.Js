@@ -45,5 +45,5 @@ module.exports = client;
     require(`./handlers/${handler}`)(client);
 })
 
-client.login(token)
+client.login(token) 
 require('./server')
