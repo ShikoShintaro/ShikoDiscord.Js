@@ -45,5 +45,19 @@ module.exports = client;
     require(`./handlers/${handler}`)(client);
 })
 
-client.login(token)
-require('./server')
+// client.login(token)
+
+const express = require("express");
+const app = express();
+const port = 3000;
+
+
+app.get('/', (req,res) => {
+    res.send("IM ALIVE")
+    
+})
+
+app.listen(port, () => {
+    
+    client.login(token)
+})
