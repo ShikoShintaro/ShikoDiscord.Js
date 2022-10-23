@@ -31,9 +31,6 @@ const client = new Client({
 });
 require('dotenv').config();
 const token = process.env.TOKEN;
-const express = require("express");
-
-const app = express();
 
 client.commands = new Collection();
 client.aliases = new Collection();
@@ -48,12 +45,5 @@ module.exports = client;
     require(`./handlers/${handler}`)(client);
 })
 
-// client.login(token)
-app.get('/', async (req,res) =>{
-    return res.send('IM FINNALY UP')
-    
-  })
-
-app.listen(2004, () => {
-    client.login(token)
-})
+client.login(token)
+require('./server')
