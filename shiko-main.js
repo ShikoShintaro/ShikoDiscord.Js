@@ -29,7 +29,8 @@ const client = new Client({
     ],
 
 });
-const { token, config } = require('./config/shiko.json')
+require('dotenv').config()
+const token = process.env.TOKEN
 
 client.commands = new Collection();
 client.aliases = new Collection();
@@ -37,7 +38,7 @@ client.categories = new Collection();
 client.subevents = new Collection();
 client.utils = new Collection();
 module.exports = client;
-client.config = config;
+
 
 
 ['handler',].forEach((handler) => {

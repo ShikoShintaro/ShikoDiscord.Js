@@ -1,8 +1,8 @@
 const client = require("../shiko-main");
-const config = require("../config/shiko.json");
+
 // const shikodb = require('../config/shiko.json').shikodb
 const { Discord, MessageEmbed, Collection } = require("discord.js");
-const prefix = config.prefix
+const prefix = process.env.PREFIX
 
 
 client.on("messageCreate", async (message) => {

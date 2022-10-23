@@ -1,0 +1,10 @@
+{
+    "colors": {
+        "yes": "#0bfc00",
+        "no": "#ff0000",
+        "join": "#00f1ff",
+        "leave": "#0058ff",
+        "answer": "#0af2ff",
+        "correct": "#c121ec"
+    }
+}

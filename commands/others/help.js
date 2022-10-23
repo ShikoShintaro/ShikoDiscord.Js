@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
 const { readdirSync } = require("fs");
-const prefix = require("../../config/shiko.json").prefix;
+const prefix = process.env.PREFIX
 
 module.exports = {
   name: "help",
