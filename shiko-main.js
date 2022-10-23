@@ -48,11 +48,12 @@ module.exports = client;
     require(`./handlers/${handler}`)(client);
 })
 
-client.login(token)
+// client.login(token)
 app.get('/', async (req,res) =>{
     return res.send('IM FINNALY UP')
+    
   })
 
 app.listen(2004, () => {
-
+    client.login(token)
 })
