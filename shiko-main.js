@@ -52,9 +52,12 @@ const app = express();
 const port = 3000;
 
 client.login(token, () => {
-    app.get('/', (req, res) => {
-        res.send("IM ALIVE")
+    app.use(app.router);
+    app.use(express.static(__dirname + '/static'));
 
+    app.get('/*', (req, res, next) => {
+        res.send("IM ALIVE")
+        next();
     })
 
     app.listen(port, () => {
