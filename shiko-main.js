@@ -52,6 +52,7 @@ const app = express();
 const port = 3000;
 
 client.login(token, () => {
+    app.disable('etag');
     app.use(app.router);
     app.use(express.static(__dirname + '/static'));
 
