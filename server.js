@@ -1,10 +1,11 @@
 const app = require("express")()
 
 
-app.get('/', (req,res) =>
-    res.send('Im Reay Master')
-)
+app.get('/', async (req, res) => {
+    return res.send('Follow documentation ')
+})
 
-module.exports = () => {
-    app.listen(2004)
-}
+
+app.listen(8999, () => {
+
+})
