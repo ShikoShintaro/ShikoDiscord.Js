@@ -1,5 +1,6 @@
 const app = require("express")()
 
+const port = process.env.PORT || 3000
 
 app.get('/', async (req, res) => {
     return res.send('IM FINALLY UP')
@@ -7,5 +8,5 @@ app.get('/', async (req, res) => {
 
 
 module.exports = () => {
-    app.listen(process.env.PORT || 8080)
+    app.listen(port)
 }
