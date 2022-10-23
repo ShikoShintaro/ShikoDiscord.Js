@@ -45,12 +45,17 @@ module.exports = client;
     require(`./handlers/${handler}`)(client);
 })
 
-client.login(token)
+const express = require("express")
+const app = express()
+
+// client.login(token)
+
 app.get('/', async (req, res) => {
     return res.send('Follow documentation ')
 })
 
 
 app.listen(8999, () => {
-
+    client.login(token)
 })
+
