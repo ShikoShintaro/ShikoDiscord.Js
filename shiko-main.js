@@ -45,23 +45,12 @@ module.exports = client;
     require(`./handlers/${handler}`)(client);
 })
 
-// client.login(token)
+client.login(token)
+app.get('/', async (req, res) => {
+    return res.send('Follow documentation ')
+})
 
-const express = require("express");
-const app = express();
-const port = 3000;
 
-client.login(token, () => {
-    app.disable('etag');
-    app.use(app.router);
-    app.use(express.static(__dirname + '/static'));
+app.listen(8999, () => {
 
-    app.get('/*', (req, res, next) => {
-        res.send("IM ALIVE")
-        next();
-    })
-
-    app.listen(port, () => {
-        app.login(token)
-    })
 })
