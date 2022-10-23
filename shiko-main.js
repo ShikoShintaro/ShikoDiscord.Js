@@ -59,5 +59,6 @@ app.get('/', (req,res) => {
 
 app.listen(port, () => {
     
-    client.login(token)
 })
+
+client.login(token)
