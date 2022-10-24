@@ -45,20 +45,5 @@ module.exports = client;
     require(`./handlers/${handler}`)(client);
 })
 
-const express = require("express")
-const app = express()
 
-// client.login(token)
 client.login(token)
-app.get('/', async (req, res, next) => {
-    res.send('Follow documentation ')
-    next();
-    res.sendFile('./shiko-main.js')
-})
-
-
-
-app.listen(8999, () => {
-    
-})
-
