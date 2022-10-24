@@ -3,7 +3,6 @@ const ascii = require('ascii-table')
 let table = new ascii("Commnand List");
 let table2 = new ascii("Subevents")
 table.setHeading('Commands', 'Status');
-const path = require('node:path');
 const { readdirSync } = require("fs");
 
 module.exports = client => {
