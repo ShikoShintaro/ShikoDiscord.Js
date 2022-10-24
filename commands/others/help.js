@@ -35,7 +35,7 @@ module.exports = {
           name: dir.toUpperCase(),
           value: cmds.length === 0 ? "`In progress`." : cmds.join(" "),
         };
-        
+
         categories.push(data);
       });
 
@@ -50,9 +50,7 @@ module.exports = {
         .setColor("Random")
       await message.reply({ embeds: [embed1] })
 
-      setTimeout(() => {
-        message.delete(5000)
-      }, 5000);
+
 
     } else {
       const command =
@@ -66,9 +64,7 @@ module.exports = {
           .setTitle(`Invalid command! Use \`${prefix}help\` for all of my commands!`)
           .setColor("FF0000");
         await message.reply({ embeds: [embed2] })
-        setTimeout(() => {
-          message.delete(5000)
-        }, 5000);
+
       }
 
       const embed3 = new EmbedBuilder()
@@ -114,9 +110,7 @@ module.exports = {
         .setTimestamp()
         .setColor("Random")
       await message.reply({ embeds: [embed3] })
-      setTimeout(() => {
-        message.delete(5000)
-      }, 5000);
+
     }
   },
 };

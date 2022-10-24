@@ -12,8 +12,6 @@ module.exports = {
             .setTimestamp()
         await
             message.reply({ embeds: [embed] });
-        setTimeout(() => {
-            message.delete(5000)
-        }, 5000);
+        
     }
 }

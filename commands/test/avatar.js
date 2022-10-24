@@ -18,10 +18,8 @@ module.exports = {
             .setColor("Random")
             .setTimestamp()
             .setFooter({ text : client.user.username, iconURL : client.user.displayAvatarURL() })
-        await message.channel.send({ embeds : [embed] })
+        await message.reply({ embeds : [embed] })
 
-        setTimeout(() => {
-            message.delete(5000)
-          }, 5000)
+        
     }
 }
