@@ -35,7 +35,7 @@ client.on("ready", async () => {
             ],
             status: options[option].status,
         })
-    }, 1000);
+    }, 10 * 1000);
 
     console.log(`"Ready Mastah", Logged in as ${client.user.tag}`);
 })
