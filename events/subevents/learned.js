@@ -6,7 +6,7 @@ module.exports.run = (client, message) => {
 
     const rndmindx = Math.max(1, Math.floor(Math.random() * lmao.length))
 
-    message.reply(`${lmao[rndmindx]}`)
+    return message.reply(`${lmao[rndmindx]}`)
 }
 
 module.exports.config = {

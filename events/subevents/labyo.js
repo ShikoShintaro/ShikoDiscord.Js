@@ -1,5 +1,5 @@
 module.exports.run = (client, message, args) => {
-    message.channel.send(`Lab u too ${message.author}`)
+    return message.channel.send(`Lab u too ${message.author}`)
 }
 
 module.exports.config = {

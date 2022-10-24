@@ -40,7 +40,7 @@ module.exports.run = (client, message, args) => {
             iconURL: message.author.displayAvatarURL({ dynamic: true })
           })
 
-    message.reply({ embeds : [embed] })
+    return message.reply({ embeds : [embed] })
 }
 
 module.exports.config = {
