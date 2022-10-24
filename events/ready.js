@@ -4,19 +4,24 @@ client.on("ready", async () => {
     const options = [
         {
             type: ActivityType.Watching,
-            text: "Aira",
+            text: "Movies with Aira",
             status: "online",
         },
         {
             type: ActivityType.Playing,
-            text: "Aira",
+            text: "With Aira~",
             status: "online",
         },
         {
             type: ActivityType.Listening,
             text: "Aira",
             status: "online",
-        }
+        },
+        {
+            type: ActivityType.Competing,
+            text: "on Aira's Heart",
+            status: "online",
+        },
     ];
 
     setInterval(() => {
