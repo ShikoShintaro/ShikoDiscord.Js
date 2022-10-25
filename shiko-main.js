@@ -1,13 +1,13 @@
-const express = require("express");
-const app = express();
+// const express = require("express");
+// const app = express();
 
-app.listen(3000, () => {
-    console.log("Yawa")
-})
+// app.listen(3000, () => {
+//     console.log("Yawa")
+// })
 
-app.get("/", (req, res) => {
-    res.send("hello bitch")
-})
+// app.get("/", (req, res) => {
+//     res.send("hello bitch")
+// })
 
 const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
 const client = new Client({
