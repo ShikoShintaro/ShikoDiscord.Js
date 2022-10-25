@@ -1,6 +1,8 @@
 
 
 module.exports.run = (client, message) => {
+    
+    if (message.author.bot) return;
     const cute = [
         "https://tenor.com/view/catjam-cat-dancing-cat-music-music-cat-cute-cat-gif-23392229",
         "https://tenor.com/view/cute-cat-cat-cat-kiss-gif-24329855",

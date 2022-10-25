@@ -100,7 +100,7 @@ client.on("messageCreate", async (message) => {
                 .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
                 .setTimestamp()
 
-            return message.channel.send({embeds : [noPermsEmbed]});
+            return message.channel.send({ embeds: [noPermsEmbed] });
         }
     }
 
@@ -131,9 +131,6 @@ client.on("messageCreate", async (message) => {
         }
         else if (message.content.startsWith("Shiko, ") && message.content.endsWith("?")) {
             client.subevents.get("res").run(client, message, msgArray, args)
-        }
-        else if (message.content.startsWith("Lesson") && message.content.endsWith("Learned")) {
-            client.subevents.get("learned").run(client, message)
         }
         else if (message.content.startsWith("Lab u") && message.content.endsWith("Shiko")) {
             client.subevents.get("labyo").run(client, message)

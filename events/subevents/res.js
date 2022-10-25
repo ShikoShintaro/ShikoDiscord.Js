@@ -2,6 +2,7 @@ const { EmbedBuilder } = require('discord.js')
 const ME = EmbedBuilder
 
 module.exports.run = (client, message, args) => {
+    if (message.author.bot) return;
     const Answer = [
         "Yes",
         "No",
