@@ -17,7 +17,7 @@ module.exports.run = (client, message) => {
 
     const rndmindx = Math.max(1, Math.floor(Math.random() * cute.length))
 
-    return message.reply(`${cute[rndmindx]}`)
+     message.reply(`${cute[rndmindx]}`)
 }
 
 module.exports.config = {
