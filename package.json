@@ -1,15 +1,15 @@
 {
   "name": "shikobot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Shiko Shintaro's First Release of Discord Bot",
   "main": "shiko-main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node shiko-main.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["shiko", "shikoBOT"],
+  "author": "Shiko Shintaro",
+  "license": "MIT",
   "dependencies": {
     "ascii-table": "^0.0.9",
     "discord.js": "^14.5.0",
@@ -19,5 +19,14 @@
   },
   "engines": {
     "node": "^19.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShikoShintaro/ShikoDiscord.Js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ShikoShintaro/ShikoDiscord.Js/issues"
+  },
+  "homepage": "https://github.com/ShikoShintaro/ShikoDiscord.Js#readme"
 }
