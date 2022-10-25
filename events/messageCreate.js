@@ -34,7 +34,7 @@ client.on("messageCreate", async (message) => {
 
 
     client.on("messageCreate", async (message) => {
-
+        if (message.author.bot) return;
         if (message.content.startsWith("uwu")) {
             client.subevents.get("olok").run(client, message, msgArray, args1)
         }
