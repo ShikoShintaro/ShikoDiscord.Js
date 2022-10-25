@@ -2,7 +2,7 @@ const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
     name: 'ping',
-
+    permissions: [],
     run: async (client, message, args) => {
         const embed = new EmbedBuilder()
 
