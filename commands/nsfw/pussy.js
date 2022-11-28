@@ -3,7 +3,7 @@ const neko = require('akaneko')
 
 module.exports = {
     name: "pussy",
-    description: "NSFW FOR KIDS ONLY",
+    description: "NSFW FOR ADULTS ONLY",
     usage : ["s!pussy"],
 
 

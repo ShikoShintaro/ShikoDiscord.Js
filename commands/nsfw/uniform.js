@@ -2,9 +2,10 @@ const { EmbedBuilder } = require('discord.js');
 const neko = require('akaneko')
 
 module.exports = {
-    name: "thighs",
+    name: "uniform",
+    aliases: ["uni"],
     description: "NSFW FOR ADULTS ONLY",
-    usage : ["s!thighs"],
+    usage : ["s!uniform"],
 
 
     run: async (client, message, args) => {
@@ -17,7 +18,7 @@ module.exports = {
 
             return message.reply({ embeds: [err] })
 
-        const image = await neko.nsfw.thighs()
+        const image = await neko.nsfw.blowjob()
 
         const embed = new EmbedBuilder()
             .setImage(image)
