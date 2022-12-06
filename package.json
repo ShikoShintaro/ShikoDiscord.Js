@@ -14,6 +14,7 @@
   "author": "Shiko Shintaro",
   "license": "MIT",
   "dependencies": {
+    "akaneko": "^5.2.3",
     "ascii-table": "^0.0.9",
     "discord.js": "^14.5.0",
     "dotenv": "^16.0.3",
