@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node shiko-main.js"
   },
-  "keywords": ["shiko", "shikoBOT"],
+  "keywords": [
+    "shiko",
+    "shikoBOT"
+  ],
   "author": "Shiko Shintaro",
   "license": "MIT",
   "dependencies": {
@@ -15,12 +18,18 @@
     "discord.js": "^14.5.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "fs": "^0.0.1-security"
+    "formidable": "^3.2.5",
+    "fs": "^0.0.1-security",
+    "mongodb": "^4.11.0",
+    "mongoose": "^6.7.0",
+    "node-osu": "^2.2.1",
+    "nodesu": "^0.7.3",
+    "osu-api-extended": "^2.5.12",
+    "request": "^2.88.2"
   },
   "engines": {
     "node": "^19.0.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ShikoShintaro/ShikoDiscord.Js.git"

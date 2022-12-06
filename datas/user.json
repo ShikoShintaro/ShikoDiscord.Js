@@ -1,0 +1,37 @@
+{
+    "id": 14459921,
+    "username": "Whiffy",
+    "joinDate": "2019-05-12T18:24:35.000Z",
+    "count300": 8736096,
+    "count100": 938991,
+    "count50": 89164,
+    "playcount": 43692,
+    "rankedScore": 17232439063,
+    "totalScore": 60036660061,
+    "ppRank": 31741,
+    "level": 100.331,
+    "ppRaw": 5637.07,
+    "accuracy": 98.73238372802734,
+    "countRankSS": 57,
+    "countRankS": 876,
+    "countRankA": 1446,
+    "country": "NL",
+    "totalSecondsPlayed": null,
+    "ppCountryRank": 419,
+    "events": [
+        {
+            "displayHtml": "<img src='/images/B_small.png'/> <b><a href='/u/14459921'>Whiffy</a></b> achieved rank #337 on <a href='/b/2592790?m=0'>Silentroom - Shuu no Hazama [Another]</a> (osu!)",
+            "beatmapId": 2592790,
+            "beatmapSetId": 1227846,
+            "date": "2021-08-16T19:58:22.000Z",
+            "epicfactor": 1
+        },
+        {
+            "displayHtml": "<img src='/images/XH_small.png'/> <b><a href='/u/14459921'>Whiffy</a></b> achieved rank #351 on <a href='/b/1970018?m=0'>Nanahira - Chikatto Chika Chika [Normal]</a> (osu!)",
+            "beatmapId": 1970018,
+            "beatmapSetId": 942642,
+            "date": "2021-08-16T14:22:29.000Z",
+            "epicfactor": 1
+        }
+    ]
+}

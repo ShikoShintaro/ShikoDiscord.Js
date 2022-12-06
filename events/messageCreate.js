@@ -2,6 +2,7 @@ const client = require("../shiko-main");
 const { EmbedBuilder, PermissionsBitField } = require("discord.js");
 // const shikodb = require('../config/shiko.json').shikodb
 const { Discord, MessageEmbed, Collection } = require("discord.js");
+const { config } = require("../config/shiko.json");
 const prefix = process.env.PREFIX
 const p = PermissionsBitField
 const ME = EmbedBuilder;
@@ -109,8 +110,22 @@ client.on("messageCreate", async (message) => {
         await command.run(client, message, args);
     } catch (err) {
         console.error(err);
-
-        message.reply('An error occurred!');
+        const err3 = new ME()
+            .setColor("Red")
+            .setTitle("Aweeee~ ")
+            .addFields(
+                {
+                    name: "Sorry There was and error using this command : ",
+                    value: `\`${command.name}\``
+                },
+                {
+                    name: "Please try it again later : ",
+                    value: "`Might be an error in the code srry about that`"
+                }
+            )
+            .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL() })
+            .setTimestamp()
+        message.reply({ embeds : [err3] });
     }
 
     const msgArray = message.content.split(/\s+/g);

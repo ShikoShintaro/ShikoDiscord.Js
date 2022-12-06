@@ -1,5 +1,10 @@
 const { ActivityType } = require("discord.js")
 const client = require('../shiko-main')
+const mongodb = require("mongoose");
+const shiko = require("../config/mongo")
+
+
+
 client.on("ready", async () => {
     const options = [
         {
@@ -38,4 +43,14 @@ client.on("ready", async () => {
     }, 10 * 1000);
 
     console.log(`"Ready Mastah", Logged in as ${client.user.tag}`);
+
+    await shiko().then(mongodb => {
+        try { 
+            console.log("Im Connected To The Data Base Master~")
+            
+        } catch(err) {
+            console.log(err)
+        }
+    })
+
 })
