@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
-const neko = require('akaneko')
-
+const hmtai = require('hmtai')
+const neko = new hmtai()
 module.exports = {
     name: "school",
     description: "NSFW FOR ADULTS ONLY",

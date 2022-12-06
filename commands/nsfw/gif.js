@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
-const neko = require('akaneko')
-
+const hmtai = require('hmtai')
+const neko = new hmtai()
 module.exports = {
     name: "hgif",
     description: "NSFW FOR ADULTS ONLY",
@@ -17,7 +17,7 @@ module.exports = {
 
             return message.reply({ embeds: [err] })
 
-        const image = await neko.nsfw.gifs()
+        const image = await neko.nsfw.gif()
 
         const embed = new EmbedBuilder()
             .setImage(image)

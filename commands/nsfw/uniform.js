@@ -1,5 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
-const neko = require('akaneko')
+const hmtai = require('hmtai')
+const neko = new hmtai()
 
 module.exports = {
     name: "uniform",
@@ -18,7 +19,7 @@ module.exports = {
 
             return message.reply({ embeds: [err] })
 
-        const image = await neko.nsfw.blowjob()
+        const image = await neko.nsfw.uniform()
 
         const embed = new EmbedBuilder()
             .setImage(image)
